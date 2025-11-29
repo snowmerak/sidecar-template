@@ -1,7 +1,7 @@
 {
   "name": "@my-org/core-proto",
   "version": "0.0.1",
-  "description": "Generated TypeScript Protobufs for NestJS",
+  "description": "Generated TypeScript Protobufs.",
   "main": "index.ts",
   "types": "index.ts",
   "license": "MIT",
