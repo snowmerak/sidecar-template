@@ -1,0 +1,39 @@
+# ==========================================
+# Dockerfile.Rust
+# ==========================================
+FROM rust:1-slim-bookworm AS builder
+
+# 1. Install build dependencies
+# We don't need protobuf-compiler because we use pre-generated code in gen/rust
+RUN apt-get update && apt-get install -y \
+    git \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# 2. Copy source code (including gen/ folder)
+COPY . .
+
+# 3. Build Sidecar Rust
+WORKDIR /app/sidecar-rust
+RUN cargo build --release
+
+# ==========================================
+# Runner
+# ==========================================
+FROM debian:bookworm-slim
+
+WORKDIR /app
+
+# Install runtime dependencies (openssl, ca-certificates)
+RUN apt-get update && apt-get install -y \
+    ca-certificates \
+    libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /app/sidecar-rust/target/release/sidecar-rust /app/sidecar-rust
+
+EXPOSE 50052
+
+CMD ["/app/sidecar-rust"]
