@@ -1,0 +1,9 @@
+[package]
+name = "gen-rust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tonic-build = "0.10"
+walkdir = "2"
+anyhow = "1.0"
