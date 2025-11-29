@@ -16,8 +16,12 @@ plugins:
     opt: paths=source_relative
 
   # 2. TypeScript (NestJS/Bun용)
-  - plugin: buf.build/community/timostamm-protobuf-ts
+  - plugin: buf.build/stephenh/ts-proto
     out: gen/ts
+    opt:
+      - nestJs=true
+      - outputServices=grpc-js
+      - esModuleInterop=true
 
   # 3. PHP (Laravel용)
   - plugin: buf.build/grpc/php

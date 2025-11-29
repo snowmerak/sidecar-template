@@ -1,0 +1,17 @@
+{
+  "name": "my-org/core-proto",
+  "description": "Generated PHP Protobufs",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": "^8.1",
+    "grpc/grpc": "^1.57",
+    "google/protobuf": "^3.25"
+  },
+  "autoload": {
+    "psr-4": {
+      "Company\\": "Company/",
+      "GPBMetadata\\": "GPBMetadata/"
+    }
+  }
+}
