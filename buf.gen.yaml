@@ -44,3 +44,11 @@ plugins:
     out: gen/cpp
   - plugin: buf.build/grpc/cpp
     out: gen/cpp
+
+  # Python
+  - plugin: buf.build/protocolbuffers/python
+    out: gen/python
+  - plugin: buf.build/grpc/python
+    out: gen/python
+  - plugin: buf.build/protocolbuffers/pyi
+    out: gen/python

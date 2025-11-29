@@ -98,6 +98,13 @@ Cargo는 Git 저장소의 특정 경로를 지정할 수 있습니다.
 core-proto = { git = "https://github.com/my-org/core-platform.git", path = "gen/rust" }
 ```
 
+#### E. Python
+pip를 사용하여 Git 저장소의 하위 디렉토리에서 직접 설치합니다.
+
+```bash
+pip install git+https://github.com/my-org/core-platform.git#subdirectory=gen/python
+```
+
 ### 4. Sidecar 개발 (Go / Rust)
 
 ### 4. Sidecar 개발 (Go / Rust)
