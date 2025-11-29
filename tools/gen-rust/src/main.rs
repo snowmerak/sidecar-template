@@ -29,6 +29,10 @@ fn main() -> anyhow::Result<()> {
     // 3. Run tonic-build
     tonic_build::configure()
         .out_dir(out_dir)
+        // Add Serde traits to all generated structs
+        .type_attribute(".", "#[derive(serde::Serialize, serde::Deserialize)]")
+        // Optional: Use camelCase for JSON fields to match standard JSON conventions
+        .type_attribute(".", "#[serde(rename_all = \"camelCase\")]")
         .compile(&protos, &[proto_root])?;
 
     // 4. Generate lib.rs automatically

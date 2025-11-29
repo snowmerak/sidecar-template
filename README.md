@@ -43,11 +43,15 @@
 
 ### 2. 코드 생성 (Core 팀)
 
-Protobuf 파일을 수정한 후, 다음 명령어로 코드를 생성합니다.
+이 프로젝트는 `Makefile`을 통해 코드 생성을 자동화합니다.
 
 ```bash
-buf generate
+make generate
 ```
+
+이 명령어는 내부적으로 다음 두 가지 작업을 수행합니다.
+1.  `buf generate`: Go, TypeScript, PHP, C++ 코드 생성
+2.  `cargo run (tools/gen-rust)`: Rust 코드 생성 및 `lib.rs` 자동 갱신
 
 생성된 `gen/` 폴더의 변경 사항을 커밋하고 푸시합니다.
 

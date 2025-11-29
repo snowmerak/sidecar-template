@@ -6,4 +6,4 @@ edition = "2021"
 [dependencies]
 core-proto = { path = "../gen/rust" }
 tokio = { version = "1.0", features = ["full"] }
-tonic = "0.10"
+tonic = "0.12"

@@ -4,9 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-prost = "0.14.1"
-tonic = {  version = "0.14.2", features = ["transport", "codegen"] }
-serde = "1.0.228"
+prost = "0.13"
+tonic = { version = "0.12", features = ["transport", "codegen"] }
+prost-types = "0.13"
+pbjson-types = "0.7"
+serde = "1.0"
 
 [lib]
 path = "src/lib.rs"
