@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package company.auth.v1;
+
+option go_package = "github.com/my-org/core-platform/gen/go/company/auth/v1;authv1";
+
+service AuthService {
+  rpc Login(LoginRequest) returns (LoginResponse);
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string token = 1;
+}
