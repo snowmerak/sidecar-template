@@ -28,8 +28,14 @@ plugins:
   # 4. Rust (Sidecar용)
   - plugin: buf.build/community/neoeinstein-prost
     out: gen/rust/src
+    opt:
+      - compile_well_known_types
+      - extern_path=.google.protobuf=::pbjson_types
   - plugin: buf.build/community/neoeinstein-tonic
     out: gen/rust/src
+    opt:
+      - compile_well_known_types
+      - extern_path=.google.protobuf=::pbjson_types
   - plugin: buf.build/community/neoeinstein-prost-serde
     out: gen/rust/src
 
