@@ -51,17 +51,50 @@ buf generate
 
 생성된 `gen/` 폴더의 변경 사항을 커밋하고 푸시합니다.
 
-### 3. API 팀 연동 (NestJS / Laravel)
+### 3. API 팀 연동 (패키지 매니저 사용)
 
-이 레포지토리를 **Git Submodule**로 추가하여 사용합니다.
+Git Submodule 대신 패키지 매니저를 통해 직접 설치할 수도 있습니다.
+
+#### A. NestJS (TypeScript)
+`package.json`에 Git URL을 의존성으로 추가합니다.
 
 ```bash
-# 예시: libs/core 경로에 서브모듈 추가
-git submodule add <repo-url> libs/core
+npm install git+https://github.com/my-org/core-platform.git#main
+# 또는 특정 서브디렉토리 지원이 필요한 경우 (GitPkg 등 사용)
+```
+*참고: 모노레포 하위 디렉토리 설치는 `npm` 기본 기능으로 제한적일 수 있습니다. Git Submodule 방식을 권장합니다.*
+
+#### B. Laravel (PHP)
+`composer.json`에 레포지토리를 등록하여 설치합니다.
+
+```json
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/my-org/core-platform"
+    }
+],
+"require": {
+    "my-org/core-proto": "dev-main"
+}
 ```
 
-*   **NestJS:** `tsconfig.json`의 `paths`에 `@core/*`: `["libs/core/gen/ts/*"]` 추가
-*   **Laravel:** `composer.json`의 `autoload`에 네임스페이스 매핑 추가
+#### C. Go
+Go Modules는 하위 디렉토리 모듈을 기본 지원합니다.
+
+```bash
+go get github.com/my-org/core-platform/gen/go@latest
+```
+
+#### D. Rust
+Cargo는 Git 저장소의 특정 경로를 지정할 수 있습니다.
+
+```toml
+[dependencies]
+core-proto = { git = "https://github.com/my-org/core-platform.git", path = "gen/rust" }
+```
+
+### 4. Sidecar 개발 (Go / Rust)
 
 ### 4. Sidecar 개발 (Go / Rust)
 
