@@ -27,9 +27,11 @@ plugins:
 
   # 4. Rust (Sidecar용)
   - plugin: buf.build/community/neoeinstein-prost
-    out: gen/rust
+    out: gen/rust/src
   - plugin: buf.build/community/neoeinstein-tonic
-    out: gen/rust
+    out: gen/rust/src
+  - plugin: buf.build/community/neoeinstein-prost-serde
+    out: gen/rust/src
 
   # C++
   - plugin: buf.build/protocolbuffers/cpp

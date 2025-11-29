@@ -15,4 +15,5 @@ pub struct LoginResponse {
     pub token: ::prost::alloc::string::String,
 }
 include!("company.auth.v1.tonic.rs");
+include!("company.auth.v1.serde.rs");
 // @@protoc_insertion_point(module)
