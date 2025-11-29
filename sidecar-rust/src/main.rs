@@ -1,10 +1,17 @@
-use core_proto; // This crate is from ../gen/rust
+use tonic::{transport::Server, Request, Response, Status};
+// use core_proto::company_auth_v1::auth_service_server::AuthServiceServer;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    println!("Sidecar Rust Server Starting...");
+    let addr = "0.0.0.0:50052".parse()?;
     
-    // Example usage would go here once code is generated and exported in core-proto
-    
+    println!("Sidecar Rust Server listening on {}", addr);
+
+    Server::builder()
+        // TODO: Add your services here
+        // .add_service(AuthServiceServer::new(MyAuthService::default()))
+        .serve(addr)
+        .await?;
+
     Ok(())
 }

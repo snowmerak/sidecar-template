@@ -3,14 +3,26 @@ package main
 import (
 	"fmt"
 	"log"
-	// This import path is replaced by the local path in go.mod
+	"net"
+
+	"google.golang.org/grpc"
 	// "github.com/my-org/core-platform/gen/go/company/auth/v1"
 )
 
 func main() {
-	fmt.Println("Sidecar Go Server Starting...")
-	// Example usage of generated code:
-	// req := &authv1.LoginRequest{Username: "admin"}
-	// fmt.Println(req)
-	log.Println("Ready to serve.")
+	port := 50051
+	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
+	if err != nil {
+		log.Fatalf("failed to listen: %v", err)
+	}
+
+	s := grpc.NewServer()
+
+	// TODO: Register your services here
+	// authv1.RegisterAuthServiceServer(s, &myAuthService{})
+
+	log.Printf("Sidecar Go Server listening at %v", lis.Addr())
+	if err := s.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
 }
